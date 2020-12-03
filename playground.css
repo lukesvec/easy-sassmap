@@ -1,0 +1,35 @@
+.u-m-0 {
+  margin: calc(0 * var()) !important;
+}
+.u-m-025 {
+  margin: calc(0.25 * var()) !important;
+}
+.u-m-05 {
+  margin: calc(0.5 * var()) !important;
+}
+.u-m-075 {
+  margin: calc(0.75 * var()) !important;
+}
+.u-m-1 {
+  margin: calc(1 * var()) !important;
+}
+.u-m-2 {
+  margin: calc(2 * var()) !important;
+}
+.u-m-3 {
+  margin: calc(3 * var()) !important;
+}
+.u-m-4 {
+  margin: calc(4 * var()) !important;
+}
+.u-m-5 {
+  margin: calc(5 * var()) !important;
+}
+.u-m-6 {
+  margin: calc(6 * var()) !important;
+}
+.u-m-7 {
+  margin: calc(7 * var()) !important;
+}
+
+/*# sourceMappingURL=playground.css.map */

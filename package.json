@@ -1,0 +1,11 @@
+{
+  "name": "sass-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch playground.scss playground.css"
+  },
+  "author": "",
+  "license": "ISC"
+}

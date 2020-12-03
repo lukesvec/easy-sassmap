@@ -1,0 +1,102 @@
+$spaces: (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+$spaces: (0,.25,.5,.75,1,2,3,4,5,6,7);
+$sides: (top, right, bottom, left);
+$gap: 1rem;
+$divider: 4;
+
+
+// --- https://css-tricks.com/snippets/sass/deep-getset-maps/ ---
+// --- https://itnext.io/advanced-use-of-sass-maps-bd5a47ca0d1a ---
+$naming:(
+	layout:(
+		base-spacing: (
+			var: ebs,
+			val: $gap
+		),
+		margin: (
+			(
+				var: zero,
+				val: 0
+			),
+			(
+				var: quarter,
+				val: .25
+			)
+		)
+	)
+);
+
+
+/// Map deep get
+/// @author Hugo Giraudel
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+	@each $key in $keys {
+			$map: map-get($map, $key);
+	}
+	@return $map;
+}
+
+// --- https://css-tricks.com/snippets/sass/str-replace-function/ ---
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+
+.u {
+	$spacing-name: map-deep-get($naming, "layout", "base-spacing", "t");
+	&-{
+		@each $space in $spaces {
+			&m-#{str-replace(#{$space},".","")} {
+				margin: calc(#{$space} * var(#{$spacing-name})) !important;
+			}
+			// &p-#{$space} {
+			// 	padding: #{$space/$divider}rem !important;
+			// }
+
+			// &my-#{$space} {
+			// 	margin-top: #{$space/$divider}rem !important;
+			// 	margin-bottom: #{$space/$divider}rem !important;
+			// }
+			// &mx-#{$space} {
+			// 	margin-left: #{$space/$divider}rem !important;
+			// 	margin-right: #{$space/$divider}rem !important;
+			// }
+
+			// &px-#{$space} {
+			// 	padding-left: #{$space/$divider}rem !important;
+			// 	padding-right: #{$space/$divider}rem !important;
+			// }
+			// &py-#{$space} {
+			// 	padding-top: #{$space/$divider}rem !important;
+			// 	padding-bottom: #{$space/$divider}rem !important;
+			// }
+			
+			// @each $side in $sides {
+			// 	&m#{str-slice($side, 0, 1)}-#{$space} {
+			// 		margin-#{$side}: #{$space/$divider}rem !important;
+			// 	}
+			// 	&p#{str-slice($side, 0, 1)}-#{$space} {
+			// 		padding-#{$side}: #{$space/$divider}rem !important;
+			// 	}
+			// }
+		}
+
+	}
+}
